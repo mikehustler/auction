@@ -24,4 +24,6 @@ class AuctionItem(models.Model):
     fmv = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
     opening_bid = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
     donor = models.ForeignKey(RegisteredPerson)
+    def __str__(self):
+        return self.name
 
