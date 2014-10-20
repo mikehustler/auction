@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.template import RequestContext, loader
 from bidRecorder.models import AuctionItem
 
 def index(request):
@@ -9,5 +10,8 @@ def listUsers(request):
 
 def listItems(request):
     itemList = AuctionItem.objects.order_by('name')
-    output = ', '.join([p.name for p in itemList])
-    return HttpResponse("list of items: " + output)
+    template = loader.get_template('bidRecorder/items.html')
+    context = RequestContext(request, {
+        'itemList': itemList,
+    })
+    return HttpResponse(template.render(context))

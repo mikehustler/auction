@@ -1,0 +1,9 @@
+{% if itemList %}
+    <ul>
+    {% for item in itemList %}
+        <li><a href="/bidRecorder/{{ item.id }}/">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No auction items are available.</p>
+{% endif %}
