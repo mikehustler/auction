@@ -10,7 +10,7 @@ class Address(models.Model):
         return self.street
 
 
-class RegisteredPerson(models.Model):
+class Registrant(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     address = models.ForeignKey(Address)
@@ -23,7 +23,7 @@ class AuctionItem(models.Model):
     description = models.CharField(max_length=500)
     fmv = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
     opening_bid = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
-    donor = models.ForeignKey(RegisteredPerson)
+    donor = models.ForeignKey(Registrant)
     def __str__(self):
         return self.name
 

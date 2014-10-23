@@ -1,0 +1,7 @@
+<a href="/auction/">HOME</a>
+
+<p>
+Item: {{ item.id  }}<br>
+Name: {{ item.name }}<br>
+Description: {{ item.description }}<br>
+Donated By: {{ item.donor }}<br>

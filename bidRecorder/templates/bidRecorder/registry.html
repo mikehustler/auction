@@ -1,0 +1,11 @@
+<a href="/auction/">HOME</a>
+<p>
+{% if registry %}
+    <ul>
+    {% for registrant in registry %}
+        <li><a href="/auction/registrant/{{ registrant.id }}/">{{ registrant.last_name }}, {{ registrant.first_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No registered people are available.</p>
+{% endif %}

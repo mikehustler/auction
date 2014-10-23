@@ -1,7 +1,9 @@
+<a href="/auction/">HOME</a>
+<p>
 {% if itemList %}
     <ul>
     {% for item in itemList %}
-        <li><a href="/bidRecorder/{{ item.id }}/">{{ item.name }}</a></li>
+        <li><a href="/auction/item/{{ item.id }}/">{{ item.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

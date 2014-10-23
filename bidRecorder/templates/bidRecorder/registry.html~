@@ -1,0 +1,11 @@
+<a href="/auction/">HOME</a>
+<p>
+{% if peopleList %}
+    <ul>
+    {% for person in peopleList %}
+        <li><a href="/auction/registrant/{{ person.id }}/">{{ person.last_name }}, {{ person.first_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No registered people are available.</p>
+{% endif %}
