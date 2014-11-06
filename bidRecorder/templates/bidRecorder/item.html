@@ -1,10 +1,11 @@
-<a href="/auction/">HOME</a><br>
-<a href="/auction/items">Item List</a>
+<a href="{% url 'index' %}">HOME</a> > 
+<a href="{% url 'listAuctions' %}">Auction List</a> >
+<a href="{% url 'listItems' item.auction.id %}">Item List</a>
 
 <p>
 Auction Item:{{ item.name }}<br>
 Description: {{ item.description }}<br>
 Donated By: {{ item.donor }}<br>
-Acution Item ID: {{ item.id  }}<br>
-
+Auction Item ID: {{ item.id  }}<br>
+Belongs to Auction: {{ item.auction.name }}<br>
 

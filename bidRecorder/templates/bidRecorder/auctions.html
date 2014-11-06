@@ -1,0 +1,13 @@
+<a href="{% url 'index' %}">HOME</a>
+<p>
+Select an auction to view the list of items in that Auction:<br>
+<p>
+{% if auctionList %}
+    <ul>
+    {% for auction in auctionList %}
+        <li><a href="{% url 'listItems' auction.id %}">{{ auction.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No auctions are defined.</p>
+{% endif %}

@@ -1,4 +1,7 @@
-<a href="/auction/">HOME</a>
+<a href="{% url 'index' %}">HOME</a> >
+<a href="{% url 'listAuctions' %}">Auction List</a><br>
+<p>
+<a href="/auction/items/additem/">Add Item</a><br>
 <p>
 {% if itemList %}
     <ul>

@@ -1,0 +1,11 @@
+<a href="/auction/">HOME</a>
+<p>
+{% if auctionList %}
+    <ul>
+    {% for auction in auctionList %}
+        <li><a href="/auction/items/">{{ auction.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No auctions are defined.</p>
+{% endif %}
