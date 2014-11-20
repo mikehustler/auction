@@ -1,0 +1,12 @@
+New Item
+
+<form actin="{% url 'addItem' auctionId %}" method="post">
+
+  <input type="text" name="name" />
+  <input type="text" name="description" />
+  
+
+  <input type="submit" value="Add Item" />
+
+
+</form>

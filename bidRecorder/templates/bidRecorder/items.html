@@ -1,12 +1,12 @@
 <a href="{% url 'index' %}">HOME</a> >
 <a href="{% url 'listAuctions' %}">Auction List</a><br>
 <p>
-<a href="/auction/items/additem/">Add Item</a><br>
+<a href="{% url 'newItemDetail' auctionId %}">Add Item</a><br>
 <p>
 {% if itemList %}
     <ul>
     {% for item in itemList %}
-        <li><a href="/auction/item/{{ item.id }}/">{{ item.name }}</a></li>
+        <li><a href="{% url 'item' item.id %}">{{ item.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

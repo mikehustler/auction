@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Auction(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
@@ -31,7 +30,7 @@ class AuctionItem(models.Model):
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=500)
     fmv = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
-    opening_bid = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
+    opening_bid = models.DecimalField('opening bid', max_digits=7, decimal_places=2)
     donor = models.ForeignKey(Registrant)
     def __str__(self):
         return self.name

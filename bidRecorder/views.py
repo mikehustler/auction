@@ -1,4 +1,6 @@
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from bidRecorder.models import Auction
 from bidRecorder.models import AuctionItem
@@ -27,6 +29,7 @@ def listItems(request, auction_id):
     itemList = AuctionItem.objects.filter(auction=auction_id).order_by('name')
     context = {
         'itemList': itemList,
+        'auctionId': auction_id,
     }
     return render(request, 'bidRecorder/items.html', context)
 
@@ -44,3 +47,22 @@ def registrant(request, registrant_id):
     registrant = Registrant.objects.get(pk=registrant_id)
     context = {'registrant': registrant}
     return render(request, 'bidRecorder/registrant.html', context)
+
+def newItemDetail(request, auction_id):
+    auction = Auction.objects.get(pk=auction_id)
+    context = {'auction': auction}
+    return render(request, 'bidRecorder/newitemdetail.html', context)
+
+
+def addItem(request, auction_id):
+    auction = Auction.objects.get(pk=auction_id)
+    newItem = auction.auctionitem_set.create(
+        auction = auction,
+        name=request.POST['name'],
+        description=request.POST['description'],
+        fmv = request.POST['fmv'],
+        opening_bid = request.POST['openingBid'],
+        donor = Registrant.objects.get(pk=1),
+    )
+    context = {'auctionId': auction_id}
+    return HttpResponseRedirect(reverse('item', args=(newItem.id,)))

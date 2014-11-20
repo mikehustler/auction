@@ -8,7 +8,8 @@ urlpatterns = patterns('',
     url(r'^items/(?P<auction_id>\d+)/$', views.listItems, name='listItems'),
     url(r'^item/(?P<item_id>\d+)/$', views.item, name='item'),
     url(r'^registrant/(?P<registrant_id>\d+)/$', views.registrant, name='registrant'),
-#    url(r'^items/additem/$', views.addItem, name='addItem'),
+    url(r'^newitemdetail/(?P<auction_id>\d+)/$', views.newItemDetail, name='newItemDetail'),
+    url(r'^additem/(?P<auction_id>\d+)/$', views.addItem, name='addItem'),
 )
 
 
