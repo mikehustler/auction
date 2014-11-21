@@ -11,4 +11,6 @@ Belongs to Auction: {{ item.auction.name }}<br>
 
 <p>
 
-<a href="{% url 'deleteItem' item.id %}">[Delete Item]</a>
+[<a href="{% url 'deleteItem' item.id %}">Delete Item</a>]<br>
+[<a href="{% url 'newItemDetail' item.auction.id %}">Add Another</a>]<br>
+

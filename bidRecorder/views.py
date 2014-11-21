@@ -29,9 +29,11 @@ def listRegistrants(request):
 
 def listItems(request, auction_id):
     itemList = AuctionItem.objects.filter(auction=auction_id).order_by('name')
+    auction = Auction.objects.get(pk=auction_id)
     context = {
         'itemList': itemList,
         'auctionId': auction_id,
+        'auction': auction
     }
     return render(request, 'bidRecorder/items.html', context)
 
@@ -40,6 +42,13 @@ def auction(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
     context = {'auction': auction}
     return render(request, 'bidRecorder/auction.html', context)
+
+
+def deleteAuction(request, auction_id):
+    auction = Auction.objects.get(pk=auction_id)
+    auction.delete()
+    # cascade delete follwing auction delete also deletes items
+    return HttpResponseRedirect(reverse('listAuctions'))
 
 
 def item(request, item_id):

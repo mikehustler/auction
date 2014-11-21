@@ -7,7 +7,10 @@ Select an auction to view the list of items in that Auction:<br>
 {% if auctionList %}
     <ul>
     {% for auction in auctionList %}
-        <li><a href="{% url 'listItems' auction.id %}">{{ auction.name }}</a></li>
+        <li>
+            <a href="{% url 'listItems' auction.id %}">{{ auction.name }}</a>
+	    [<a href="{% url 'deleteAuction' auction.id %}">Delete</a>]
+        </li>
     {% endfor %}
     </ul>
 {% else %}

@@ -1,7 +1,10 @@
 <a href="{% url 'index' %}">HOME</a> >
 <a href="{% url 'listAuctions' %}">Auction List</a><br>
 <p>
-<a href="{% url 'newItemDetail' auctionId %}">Add Item</a><br>
+<b>{{ auction.name }}</b><br>
+<i>{{ auction.description }}</i>
+<p>
+[<a href="{% url 'newItemDetail' auctionId %}">Add Item</a>]<br>
 <p>
 {% if itemList %}
     <ul>
