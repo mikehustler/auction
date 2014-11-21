@@ -5,6 +5,7 @@ from django.shortcuts import render
 from bidRecorder.models import Auction
 from bidRecorder.models import AuctionItem
 from bidRecorder.models import Registrant
+import sys
 
 def index(request):
     return render(request, 'bidRecorder/index.html')
@@ -25,6 +26,7 @@ def listRegistrants(request):
     }
     return render(request, 'bidRecorder/registry.html', context)
 
+
 def listItems(request, auction_id):
     itemList = AuctionItem.objects.filter(auction=auction_id).order_by('name')
     context = {
@@ -33,20 +35,25 @@ def listItems(request, auction_id):
     }
     return render(request, 'bidRecorder/items.html', context)
 
+
 def auction(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
     context = {'auction': auction}
     return render(request, 'bidRecorder/auction.html', context)
 
+
 def item(request, item_id):
     item = AuctionItem.objects.get(pk=item_id)
+    print >>sys.stderr, 'item_id: ' + item_id
     context = {'item': item}
     return render(request, 'bidRecorder/item.html', context)
+
 
 def registrant(request, registrant_id):
     registrant = Registrant.objects.get(pk=registrant_id)
     context = {'registrant': registrant}
     return render(request, 'bidRecorder/registrant.html', context)
+
 
 def newItemDetail(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
@@ -66,3 +73,12 @@ def addItem(request, auction_id):
     )
     context = {'auctionId': auction_id}
     return HttpResponseRedirect(reverse('item', args=(newItem.id,)))
+
+def deleteItem(request, item_id):
+
+    print >>sys.stderr, 'item_id: ' + item_id
+    
+    item = AuctionItem.objects.get(pk=item_id)
+    auction_id = item.auction.id
+    item.delete()
+    return HttpResponseRedirect(reverse('listItems', args=(auction_id,)))

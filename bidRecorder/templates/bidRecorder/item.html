@@ -3,9 +3,12 @@
 <a href="{% url 'listItems' item.auction.id %}">Item List</a>
 
 <p>
-Auction Item:{{ item.name }}<br>
+Auction Item: {{ item.name }}<br>
 Description: {{ item.description }}<br>
 Donated By: {{ item.donor }}<br>
 Auction Item ID: {{ item.id  }}<br>
 Belongs to Auction: {{ item.auction.name }}<br>
 
+<p>
+
+<a href="{% url 'deleteItem' item.id %}">[Delete Item]</a>

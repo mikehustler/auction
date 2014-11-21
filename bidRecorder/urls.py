@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^registrant/(?P<registrant_id>\d+)/$', views.registrant, name='registrant'),
     url(r'^newitemdetail/(?P<auction_id>\d+)/$', views.newItemDetail, name='newItemDetail'),
     url(r'^additem/(?P<auction_id>\d+)/$', views.addItem, name='addItem'),
+    url(r'^deleteitem/(?P<item_id>\d+)/$', views.deleteItem, name='deleteItem'),
 )
 
 
