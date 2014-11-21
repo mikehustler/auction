@@ -1,0 +1,17 @@
+New Item to auction: {{ auction.name }}
+<p>
+
+<form action="{% url 'addItem' auction.id %}" method="post">
+
+{% csrf_token %}
+
+  Item Name: <input type="text" name="name" /><br>
+  Item Description: <input type="text" name="description" /><br>
+  Fair Market Value: <input type="text" name="fmv" /><br>
+  Opening Bid: <input type="text" name="openingBid" /><br>
+  
+  <p>
+  <input type="submit" value="Add Item" />
+
+
+</form>

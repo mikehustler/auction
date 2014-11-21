@@ -44,7 +44,6 @@ def auction(request, auction_id):
 
 def item(request, item_id):
     item = AuctionItem.objects.get(pk=item_id)
-    print >>sys.stderr, 'item_id: ' + item_id
     context = {'item': item}
     return render(request, 'bidRecorder/item.html', context)
 
@@ -61,6 +60,11 @@ def newItemDetail(request, auction_id):
     return render(request, 'bidRecorder/newitemdetail.html', context)
 
 
+def newAuctionDetail(request):
+    context = {}
+    return render(request, 'bidRecorder/newauctiondetail.html', context)
+
+
 def addItem(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
     newItem = auction.auctionitem_set.create(
@@ -74,11 +78,18 @@ def addItem(request, auction_id):
     context = {'auctionId': auction_id}
     return HttpResponseRedirect(reverse('item', args=(newItem.id,)))
 
+
 def deleteItem(request, item_id):
 
-    print >>sys.stderr, 'item_id: ' + item_id
-    
     item = AuctionItem.objects.get(pk=item_id)
     auction_id = item.auction.id
     item.delete()
     return HttpResponseRedirect(reverse('listItems', args=(auction_id,)))
+
+
+def addAuction(request):
+    auction = Auction.objects.create(
+        name=request.POST['name'],
+        description=request.POST['description'],
+    )
+    return HttpResponseRedirect(reverse('listAuctions'))

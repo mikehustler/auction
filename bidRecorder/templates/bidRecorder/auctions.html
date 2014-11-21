@@ -2,6 +2,8 @@
 <p>
 Select an auction to view the list of items in that Auction:<br>
 <p>
+[<a href="{% url 'newAuctionDetail' %}">New Auction</a>]<br>
+<p>
 {% if auctionList %}
     <ul>
     {% for auction in auctionList %}
