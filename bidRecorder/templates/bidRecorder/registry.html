@@ -1,5 +1,10 @@
 <a href="/auction/">HOME</a>
 <p>
+<h1>Auction Registry</h1>
+<i>Registry of Bidders and Doners</i>
+<p>
+[<a href="{% url 'newRegistrantDetail' %}">Add Registrant</a>]<br>
+<p>
 {% if registry %}
     <ul>
     {% for registrant in registry %}

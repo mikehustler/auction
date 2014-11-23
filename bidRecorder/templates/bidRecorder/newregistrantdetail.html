@@ -1,0 +1,35 @@
+<p>
+
+<form action="{% url 'addRegistrant' registrant.id %}" method="post">
+
+{% csrf_token %}
+
+{% if registrant %}
+
+  First Name: <input type="text" name="first_name" value="{{ registrant.first_name }}" /><br>
+  Last Name: <input type="text" name="last_name" value="{{ registrant.last_name }}"/><br>
+  <p>
+  Street: <input type="text" name="street" value="{{ registrant.street }}"/><br>
+  City: <input type="text" name="city" value="{{ registrant.city }}"/><br>
+  Province / State: <input type="text" name="prov" value="{{ registrant.prov }}"/><br>
+  Postal Code / Zip: <input type="text" name="pc" value="{{ registrant.pc }}"/><br>
+  <p>
+
+  <input type="submit" value="Update Registrant"/>
+
+{% else %}
+
+  First Name: <input type="text" name="first_name"/><br>
+  Last Name: <input type="text" name="last_name"/><br>
+  <p>
+  Street: <input type="text" name="street"/><br>
+  City: <input type="text" name="city"/><br>
+  Province / State: <input type="text" name="prov"/><br>
+  Postal Code / Zip: <input type="text" name="pc"/><br>
+  <p>
+
+  <input type="submit" value="Add Registrant"/>
+
+{% endif %}
+
+</form>

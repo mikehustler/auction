@@ -1,0 +1,15 @@
+<p>
+
+<form action="{% url 'addAuction' %}" method="post">
+
+{% csrf_token %}
+
+  Auction Name: <input type="text" name="name" /><br>
+  Auction Description: <input type="text" name="description" /><br>
+  
+  <p>
+
+  <input type="submit" value="Add Auction" />
+
+
+</form>

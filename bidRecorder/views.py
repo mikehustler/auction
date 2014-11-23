@@ -74,6 +74,58 @@ def newAuctionDetail(request):
     return render(request, 'bidRecorder/newauctiondetail.html', context)
 
 
+def newRegistrantDetail(request):
+    context = {}
+    return render(request, 'bidRecorder/newregistrantdetail.html', context)
+
+
+def editRegistrantDetail(request, registrant_id):
+    print >> sys.stderr, '(entry)registrant_id: ' + str(registrant_id)
+    registrant = Registrant.objects.get(pk=registrant_id)
+    context = {'registrant': registrant}
+    print >> sys.stderr, '(entry)registrant_id: ' + str(registrant)
+    return render(request, 'bidRecorder/newregistrantdetail.html', context)
+
+
+def addRegistrant(request, registrant_id=None):
+    print >> sys.stderr, '(entry)registrant_id: ' + str(registrant_id)
+    registrant = None
+
+    try:
+      registrant = Registrant.objects.get(pk=registrant_id)
+      print >> sys.stderr, '(try) registrant_id: ' + str(registrant.id)
+    except: Registrant.DoesNotExist
+
+    if registrant :
+      print >> sys.stderr, 'does exist'
+      registrant.first_name = request.POST['first_name']
+      registrant.last_name = request.POST['last_name']
+      registrant.street = request.POST['street']
+      registrant.city = request.POST['city']
+      registrant.prov = request.POST['prov']
+      registrant.pc = request.POST['pc']
+
+      registrant.save()
+    else :
+      print >> sys.stderr, 'does not exist'
+      registrant = Registrant.objects.create(
+        first_name = request.POST['first_name'],
+        last_name = request.POST['last_name'],
+        street = request.POST['street'],
+        city = request.POST['city'],
+        prov = request.POST['prov'],
+        pc = request.POST['pc'],
+    )
+    return HttpResponseRedirect(reverse('listRegistrants'))
+
+
+def deleteRegistrant(request, registrant_id):
+
+    registrant = Registrant.objects.get(pk=registrant_id)
+    registrant.delete()
+    return HttpResponseRedirect(reverse('listRegistrants'))
+
+
 def addItem(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
     newItem = auction.auctionitem_set.create(

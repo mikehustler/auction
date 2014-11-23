@@ -2,7 +2,15 @@
 <a href="/auction/registry">Registry</a>
 
 <p>
-Auction Registrant:
+<h1>Registrant</h1>
 
-Name: {{ registrant.last_name }}, {{ registrant.first_name }}<br>
-Address: {{ registrant.address }}<br>
+<b>{{ registrant.last_name }}, {{ registrant.first_name }}</b><br>
+<p>
+{{ registrant.street }}<br>
+{{ registrant.city }}, {{ registrant.prov }}
+{{ registrant.pc }}
+<p>
+[<a href="{% url 'editRegistrantDetail' registrant.id %}">Edit Registrant</a>]<br>
+[<a href="{% url 'deleteRegistrant' registrant.id %}">Delete Registrant</a>]<br>
+<p>
+[<a href="{% url 'newRegistrantDetail' %}">Add Another</a>]<br>

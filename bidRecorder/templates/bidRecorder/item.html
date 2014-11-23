@@ -5,10 +5,11 @@
 <p>
 Auction Item: {{ item.name }}<br>
 Description: {{ item.description }}<br>
+FMV: {{ item.fmv }}<br>
+Opening Bid: {{ item.opening_bid }}<br>
 Donated By: {{ item.donor }}<br>
 Auction Item ID: {{ item.id  }}<br>
 Belongs to Auction: {{ item.auction.name }}<br>
-
 <p>
 
 [<a href="{% url 'deleteItem' item.id %}">Delete Item</a>]<br>
