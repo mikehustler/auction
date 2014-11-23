@@ -134,7 +134,7 @@ def addItem(request, auction_id):
         description=request.POST['description'],
         fmv = request.POST['fmv'],
         opening_bid = request.POST['openingBid'],
-        donor = Registrant.objects.get(pk=1),
+        donor = Registrant.objects.get(),
     )
     context = {'auctionId': auction_id}
     return HttpResponseRedirect(reverse('item', args=(newItem.id,)))
