@@ -1,8 +1,8 @@
 <a href="{% url 'index' %}">HOME</a>
 <p>
-Select an auction to view the list of items in that Auction:<br>
+<h1>Auctions</h1>
 <p>
-[<a href="{% url 'newAuctionDetail' %}">New Auction</a>]<br>
+Select an auction to view the list of items in that Auction:<br>
 <p>
 {% if auctionList %}
     <ul>
@@ -16,3 +16,5 @@ Select an auction to view the list of items in that Auction:<br>
 {% else %}
     <p>No auctions are defined.</p>
 {% endif %}
+<p>
+[<a href="{% url 'newAuctionDetail' %}">New Auction</a>]<br>

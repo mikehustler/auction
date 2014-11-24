@@ -1,17 +1,37 @@
-New Item to auction: {{ auction.name }}
+{% if item %}
+
+Edit Item
+<p>
+
+<form action="{% url 'editItem' item.id %}" method="post">
+
+{% csrf_token %}
+  Item Name: <input type="text" name="name" value="{{item.name}}"/><br>
+  Item Description: <input type="text" name="description" value="{{item.description}}"/><br>
+  Fair Market Value: <input type="text" name="fmv" value="{{item.fmv}}"/><br>
+  Opening Bid: <input type="text" name="opening_bid" value="{{item.opening_bid}}"/><br>
+  
+  <p>
+  <input type="submit" value="Update Item" />
+
+{% else %}
+
+New Item for Auction
+ <a href="{% url 'listItems' auction.id %}">{{ auction.name }}</a>
 <p>
 
 <form action="{% url 'addItem' auction.id %}" method="post">
 
-{% csrf_token %}
+  {% csrf_token %}
 
   Item Name: <input type="text" name="name" /><br>
   Item Description: <input type="text" name="description" /><br>
   Fair Market Value: <input type="text" name="fmv" /><br>
-  Opening Bid: <input type="text" name="openingBid" /><br>
+  Opening Bid: <input type="text" name="opening_bid" /><br>
   
   <p>
   <input type="submit" value="Add Item" />
 
+{% endif %}
 
 </form>

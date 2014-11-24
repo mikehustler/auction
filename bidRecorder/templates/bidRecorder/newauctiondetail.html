@@ -1,5 +1,18 @@
 <p>
 
+{% if auction %}
+
+<form action="{% url 'editAuction' auction.id %}" method="post">
+
+{% csrf_token %}
+
+  Auction Name: <input type="text" name="name" value="{{auction.name}}"/><br>
+  Auction Description: <input type="text" name="description" value="{{auction.description}}"/><br>
+
+  <input type="submit" value="Update Auction" />
+
+{% else %}
+
 <form action="{% url 'addAuction' %}" method="post">
 
 {% csrf_token %}
@@ -11,5 +24,6 @@
 
   <input type="submit" value="Add Auction" />
 
+{% endif %}
 
 </form>

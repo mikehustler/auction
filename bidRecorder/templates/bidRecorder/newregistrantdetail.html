@@ -3,7 +3,7 @@
 
 {% if registrant %}
 
-<form action="{% url 'addRegistrant' registrant.id %}" method="post">
+<form action="{% url 'editRegistrant' registrant.id %}" method="post">
 
 {% csrf_token %}
 
@@ -22,7 +22,7 @@
 
 <form action="{% url 'addRegistrant' %}" method="post">
 
-{% csrf_token %}
+  {% csrf_token %}
 
   First Name: <input type="text" name="first_name"/><br>
   Last Name: <input type="text" name="last_name"/><br>

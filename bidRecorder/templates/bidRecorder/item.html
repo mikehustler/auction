@@ -3,15 +3,20 @@
 <a href="{% url 'listItems' item.auction.id %}">Item List</a>
 
 <p>
-Auction Item: {{ item.name }}<br>
-Description: {{ item.description }}<br>
-FMV: {{ item.fmv }}<br>
-Opening Bid: {{ item.opening_bid }}<br>
-Donated By: {{ item.donor }}<br>
-Auction Item ID: {{ item.id  }}<br>
-Belongs to Auction: {{ item.auction.name }}<br>
+<b>{{ item.name }}</b><br>
+<i>{{ item.description }}</i><br>
+<p>
+FMV: ${{ item.fmv }}<br>
+Opening Bid: ${{ item.opening_bid }}<br>
+<p>
+Donated By: <a href="/auction/registrant/{{ item.donor.id }}/">{{ item.donor.last_name }}, {{ item.donor.first_name }}</a>
+<br>
+Included in Auction: <a href="{% url 'listItems' item.auction.id %}">{{ item.auction.name }}</a>
+<p>
+({{ item.id  }})
 <p>
 
+[<a href="{% url 'editItemDetail' item.id %}">Edit Item</a>]<br>
 [<a href="{% url 'deleteItem' item.id %}">Delete Item</a>]<br>
+<p>
 [<a href="{% url 'newItemDetail' item.auction.id %}">Add Another</a>]<br>
-

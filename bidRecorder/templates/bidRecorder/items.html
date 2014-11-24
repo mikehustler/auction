@@ -1,7 +1,7 @@
 <a href="{% url 'index' %}">HOME</a> >
 <a href="{% url 'listAuctions' %}">Auction List</a><br>
 <p>
-<b>{{ auction.name }}</b><br>
+<b>{{ auction.name }}</b> [<a href="{% url 'editAuctionDetail' auction.id %}">edit</a>]<br>
 <i>{{ auction.description }}</i>
 <p>
 [<a href="{% url 'newItemDetail' auctionId %}">Add Item</a>]<br>
