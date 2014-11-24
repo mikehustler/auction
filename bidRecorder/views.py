@@ -147,30 +147,35 @@ def item(request, item_id):
 
 def newItemDetail(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
+    names = Registrant.objects.order_by('last_name')
     context = {
-         'auction': auction }
+         'auction': auction,
+         'names': names }
     return render(request, 'bidRecorder/newitemdetail.html', context)
 
 
 def addItem(request, auction_id):
     auction = Auction.objects.get(pk=auction_id)
+    donor_id = request.POST['donor_id']
     newItem = auction.auctionitem_set.create(
         auction = auction,
         name=request.POST['name'],
         description=request.POST['description'],
         fmv = request.POST['fmv'],
         opening_bid = request.POST['opening_bid'],
-        donor = Registrant.objects.all()[0],
+        donor = Registrant.objects.get(pk=donor_id),
     )
 
     return HttpResponseRedirect(reverse('item', args=(newItem.id,)))
 
 
 def editItemDetail(request, item_id):
+    names = Registrant.objects.order_by('last_name')
     item = AuctionItem.objects.get(pk=item_id)
     context = {
          'item': item,
-         'auction': item.auction }
+         'auction': item.auction,
+         'names': names }
     return render(request, 'bidRecorder/newitemdetail.html', context)
 
 
@@ -185,6 +190,8 @@ def editItem(request, item_id):
     item.description = request.POST['description']
     item.fmv = request.POST['fmv']
     item.opening_bid = request.POST['opening_bid']
+    donor_id = request.POST['donor_id']
+    item.donor = Registrant.objects.get(pk=donor_id)
 
     item.save()
 

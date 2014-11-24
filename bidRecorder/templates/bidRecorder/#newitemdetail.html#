@@ -13,7 +13,7 @@ Edit Item
   <select name="donor_id" form="itemForm"">
   {% for name in names %}
       <option value="{{name.id}}"
-          {% if name.id == item.donor.id %} selected="selected"{% endif %}>
+          {% if name.id == item.donor.id %}selected="selected"{% endif %}>
               {{name.last_name}}, {{name.first_name}} ({{name.id}})
       </option>
   {% endfor %}
