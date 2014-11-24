@@ -3,8 +3,12 @@ from django.db import models
 class Auction(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
+
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name',)
 
 
 class Registrant(models.Model):
@@ -19,6 +23,9 @@ class Registrant(models.Model):
     def __str__(self):
         return self.last_name + ", " + self.first_name
 
+    class Meta:
+        ordering = ('last_name','first_name',)
+
 
 class AuctionItem(models.Model):
     auction = models.ForeignKey(Auction)
@@ -27,5 +34,9 @@ class AuctionItem(models.Model):
     fmv = models.DecimalField('fair market value', max_digits=7, decimal_places=2)
     opening_bid = models.DecimalField('opening bid', max_digits=7, decimal_places=2)
     donor = models.ForeignKey(Registrant)
+
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ('name','description',)

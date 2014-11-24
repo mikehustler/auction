@@ -1,0 +1,10 @@
+class AuctionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Auction
+        fields = ('name', 'description')
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('url', 'name')
